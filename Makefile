@@ -23,6 +23,15 @@ CC = gcc
 
 # generic options for gcc
 CFLAGS = -s -static -Wall -O3
+CFLAGS += -Wextra
+CFLAGS += -Wmissing-declarations
+CFLAGS += -Wno-missing-field-initializers
+CFLAGS += -Wno-unused-parameter
+CFLAGS += -Wpointer-arith
+CFLAGS += -Wundef
+CFLAGS += -Wold-style-definition
+CFLAGS += -Wmissing-prototypes
+CFLAGS += -Wstrict-prototypes
 
 # if your gcc lets you do it, then try this one
 #CFLAGS = -s -static -Wall -O3 -fomit-frame-pointer -funroll-loops

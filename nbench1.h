@@ -58,8 +58,8 @@ extern void FreeMemory(farvoid *mempointer,
 extern void MoveMemory(farvoid *destination,
 		farvoid *source, unsigned long nbytes);
 extern void ReportError(char *context, int errorcode);
-extern void ErrorExit();
-extern unsigned long StartStopwatch();
+extern void ErrorExit(void);
+extern unsigned long StartStopwatch(void);
 extern unsigned long StopStopwatch(unsigned long startticks);
 extern unsigned long TicksToSecs(unsigned long tickamount);
 extern double TicksToFracSecs(unsigned long tickamount);
@@ -135,7 +135,7 @@ static void strsift(farulong *optrarray,
 void DoBitops(void);
 static ulong DoBitfieldIteration(farulong *bitarraybase,
 		farulong *bitoparraybase,
-		long bitoparraysize,
+		ulong bitoparraysize,
 		ulong *nbitops);
 static void ToggleBitRun(farulong *bitmap,
 		ulong bit_addr,
@@ -294,7 +294,7 @@ static long plaintextlen;               /* Length of plaintext */
 /*
 ** PROTOTYPES
 */
-void DoHuffman();
+void DoHuffman(void);
 static void create_text_line(farchar *dt,long nchars);
 static void create_text_block(farchar *tb, ulong tblen,
 		ushort maxlinlen);
@@ -363,21 +363,21 @@ char *inpath="NNET.DAT";
 void DoNNET(void);
 static ulong DoNNetIteration(ulong nloops);
 static void do_mid_forward(int patt);
-static void do_out_forward();
+static void do_out_forward(void);
 void display_output(int patt);
 static void do_forward_pass(int patt);
 static void do_out_error(int patt);
-static void worst_pass_error();
-static void do_mid_error();
-static void adjust_out_wts();
-static void adjust_mid_wts();
+static void worst_pass_error(void);
+static void do_mid_error(void);
+static void adjust_out_wts(void);
+static void adjust_mid_wts(int patt);
 static void do_back_pass(int patt);
-static void move_wt_changes();
-static int check_out_error();
-static void zero_changes();
-static void randomize_wts();
-static int read_data_file();
-/* static int initialize_net(); */
+static void move_wt_changes(void);
+static int check_out_error(void);
+static void zero_changes(void);
+static void randomize_wts(void);
+static int read_data_file(void);
+/* static int initialize_net(void); */
 
 /***********************
 **  LU DECOMPOSITION  **

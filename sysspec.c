@@ -751,7 +751,7 @@ return;
 ** ErrorExit
 ** Peforms an exit from an error condition.
 */
-void ErrorExit()
+void ErrorExit(void)
 {
 
 /*
@@ -779,7 +779,7 @@ exit(1);
 ** Starts a software stopwatch.  Returns the first value of
 ** the stopwatch in ticks.
 */
-unsigned long StartStopwatch()
+unsigned long StartStopwatch(void)
 {
 #ifdef MACTIMEMGR
 /*

@@ -341,7 +341,7 @@ exit(0);
 */
 static int parse_arg(char *argptr)
 {
-int i;          /* Index */
+size_t i;       /* Index */
 FILE *cfile;    /* Command file identifier */
 
 /*

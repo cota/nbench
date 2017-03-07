@@ -112,7 +112,7 @@ int RemoveMemArray(ulong adj_addr,ulong *true_addr);
 
 void ReportError(char *context, int errorcode);
 
-void ErrorExit();
+void ErrorExit(void);
 
 void CreateFile(char *filename,
                 int *errorcode);
@@ -158,7 +158,7 @@ void writefile(FILE *fhandle,
 
 #endif
 
-unsigned long StartStopwatch();
+unsigned long StartStopwatch(void);
 
 unsigned long StopStopwatch(unsigned long startticks);
 

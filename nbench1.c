@@ -258,7 +258,7 @@ static void LoadNumArrayWithRand(farlong *array,     /* Pointer to arrays */
 		ulong arraysize,
 		uint numarrays)         /* # of elements in array */
 {
-long i;                 /* Used for index */
+ulong i;                /* Used for index */
 farlong *darray;        /* Destination array pointer */
 /*
 ** Initialize the random number generator
@@ -938,7 +938,7 @@ ulong accumtime;                /* Accumulated time in ticks */
 double iterations;              /* # of iterations */
 char *errorcontext;             /* Error context string */
 int systemerror;                /* For holding error codes */
-int ticks;
+ulong ticks;
 
 /*
 ** Link to global structure.
@@ -1079,10 +1079,10 @@ return;
 */
 static ulong DoBitfieldIteration(farulong *bitarraybase,
 		farulong *bitoparraybase,
-		long bitoparraysize,
+		ulong bitoparraysize,
 		ulong *nbitops)
 {
-long i;                         /* Index */
+ulong i;                        /* Index */
 ulong bitoffset;                /* Offset into bitmap */
 ulong elapsed;                  /* Time to execute */
 /*
@@ -2242,7 +2242,7 @@ return;
 void DoIDEA(void)
 {
 IDEAStruct *locideastruct;      /* Loc pointer to global structure */
-int i;
+ulong i;
 IDEAkey Z,DK;
 u16 userkey[8];
 ulong accumtime;
@@ -2864,11 +2864,11 @@ static ulong DoHuffIteration(farchar *plaintext,
 	ulong nloops,
 	huff_node *hufftree)
 {
-int i;                          /* Index */
-long j;                         /* Bigger index */
-int root;                       /* Pointer to huffman tree root */
+ulong i;                        /* Index */
+ulong j;                        /* Bigger index */
+ulong root;                     /* Pointer to huffman tree root */
 float lowfreq1, lowfreq2;       /* Low frequency counters */
-int lowidx1, lowidx2;           /* Indexes of low freq. elements */
+long lowidx1, lowidx2;          /* Indexes of low freq. elements */
 long bitoffset;                 /* Bit offset into text */
 long textoffset;                /* Char offset into text */
 long maxbitoffset;              /* Holds limit of bit offset */
@@ -2959,7 +2959,7 @@ while(1)
 	** Find next lowest frequency
 	*/
 	for(i=0;i<=root;i++)
-		if((hufftree[i].parent<0) && (i!=lowidx1))
+		if((hufftree[i].parent<0) && ((long)i!=lowidx1))
 			if(hufftree[i].freq<lowfreq2)
 			{       lowfreq2=hufftree[i].freq;
 				lowidx2=i;
@@ -3146,7 +3146,6 @@ return((1<<bitnumb) & comparray[byteoffset] );
 void DoNNET(void)
 {
 NNetStruct *locnnetstruct;      /* Local ptr to global data */
-char *errorcontext;
 ulong accumtime;
 double iterations;
 
@@ -3154,11 +3153,6 @@ double iterations;
 ** Link to global data
 */
 locnnetstruct=&global_nnetstruct;
-
-/*
-** Set error context
-*/
-errorcontext="CPU:NNET";
 
 /*
 ** Init random number generator.
@@ -3309,7 +3303,7 @@ return;
 ** the inputs (outputs from middle layer), modified by the
 ** sigmoid function.
 **/
-static void  do_out_forward()
+static void  do_out_forward(void)
 {
 double sum;
 int neurode, i;
@@ -3428,7 +3422,7 @@ return;
 ************************
 ** Find the worst and average error in the pass and save it
 **/
-static void  worst_pass_error()
+static void  worst_pass_error(void)
 {
 double error,sum;
 
@@ -3456,7 +3450,7 @@ return;
 ** Recall that f(x) is merely the output of the middle
 ** layer neurode on the forward pass.
 **/
-static void do_mid_error()
+static void do_mid_error(void)
 {
 double sum;
 int neurode, i;
@@ -3485,7 +3479,7 @@ return;
 ** the middle layer.
 ** Use the Delta Rule with momentum term to adjust the weights.
 **/
-static void adjust_out_wts()
+static void adjust_out_wts(void)
 {
 int weight, neurode;
 double learn,delta,alph;
@@ -3566,7 +3560,7 @@ return;
 ** array for use by the momentum term in this pass. Also zero out
 ** the accumulating arrays after the move.
 **/
-static void move_wt_changes()
+static void move_wt_changes(void)
 {
 int i,j;
 
@@ -3599,7 +3593,7 @@ return;
 ** is simply an arbitrary measure of how well the network
 ** has learned -- many other standards are possible.
 **/
-static int check_out_error()
+static int check_out_error(void)
 {
 int result,i,error;
 
@@ -3646,7 +3640,7 @@ return(result);
 ********************
 ** Zero out all the wt change arrays
 **/
-static void zero_changes()
+static void zero_changes(void)
 {
 int i,j;
 
@@ -3681,7 +3675,7 @@ return;
 ** NOTE: Had to make alterations to how the random numbers were
 ** created.  -- RG.
 **/
-static void randomize_wts()
+static void randomize_wts(void)
 {
 int neurode,i;
 double value;
@@ -3760,7 +3754,7 @@ return;
 **
 ** Returns -1 if any file error occurred, otherwise 0.
 **/
-static int read_data_file()
+static int read_data_file(void)
 {
 FILE *infile;
 

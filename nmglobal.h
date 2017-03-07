@@ -119,16 +119,6 @@
 /* #define MAC */
 
 /*
-** Define LONG64 if your compiler emits 64-bit longs.
-** This is typically true of Alpha compilers on Unix
-** systems...though, who knows, this may change in the
-** future. I MOVED THIS DEFINTION INTO THE FILE pointer.h. DO NOT
-** DEFINE IT HERE. IT WILL AUTOMATICALLY BE DEFINED IF NECESSARY.
-** Uwe F. Mayer, Dec 15, 1996, Nov 15, 1997
-*/
-/* #define LONG64 */
-
-/*
 ** Define MACCWPROF if you are profiling on the Mac using
 ** Code Warrior.  This enables code that turns off the
 ** profiler in an evern of an error exit.

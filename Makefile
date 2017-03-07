@@ -119,13 +119,6 @@ emfloat.o: emfloat.h emfloat.c nmglobal.h pointer.h Makefile
 	$(CC) $(MACHINE) $(DEFINES) $(CFLAGS)\
 		-c emfloat.c
 
-pointer.h: pointer Makefile
-	$(CC) $(MACHINE) $(DEFINES) $(CFLAGS)\
-		-o pointer pointer.c
-	rm -f pointer.h
-	if [ "4" = `./pointer` ] ; then touch pointer.h ;\
-	else echo "#define LONG64" >pointer.h ; fi
-
 misc.o: misc.h misc.c Makefile
 	$(CC) $(MACHINE) $(DEFINES) $(CFLAGS)\
 		-c misc.c
@@ -147,7 +140,7 @@ nbench: emfloat.o misc.o nbench0.o nbench1.o sysspec.o hardware.o
 
 clean:
 	- /bin/rm -f *.o *~ \#* core a.out hello sysinfo.c sysinfoc.c \
-		 bug pointer pointer.h debugbit.dat
+		 bug debugbit.dat
 
 mrproper: clean
 	- /bin/rm -f nbench

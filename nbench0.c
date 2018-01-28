@@ -341,7 +341,6 @@ exit(0);
 */
 static int parse_arg(char *argptr)
 {
-size_t i;       /* Index */
 FILE *cfile;    /* Command file identifier */
 
 /*
@@ -350,22 +349,18 @@ FILE *cfile;    /* Command file identifier */
 if(*argptr++!='-') return(-1);
 
 /*
-** Convert the rest of the argument to upper case
-** so there's little chance of confusion.
-*/
-for(i=0;i<strlen(argptr);i++)
-        argptr[i]=(char)toupper((int)argptr[i]);
-
-/*
 ** Next character picks the action.
 */
 switch(*argptr++)
 {
         case '?':       return(-1);     /* Will display help */
 
-        case 'V': global_allstats=1; return(0); /* verbose mode */
+        case 'V':
+        case 'v':
+		global_allstats=1; return(0); /* verbose mode */
 
         case 'C':                       /* Command file name */
+        case 'c':
                 /*
                 ** First try to open the file for reading.
                 */
